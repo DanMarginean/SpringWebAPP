@@ -18,6 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @Operation(
             summary = "Create a new order",
@@ -95,7 +96,7 @@ public class OrderController {
     ) {
         return ResponseEntity.ok(orderService.getOrdersByCustomer(customerId));
     }
-
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}/status")
     @Operation(
             summary = "Update order status",

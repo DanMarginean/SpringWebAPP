@@ -1,26 +1,24 @@
 package com.example.onlineshop.Entity;
 
+
+
 import jakarta.persistence.*;
 import lombok.*;
 
+
 @Entity
-@Table(name = "customers")
+@Table(name = "roles")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Customer {
-
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-
-    @OneToOne
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
-    private User user;
+    @Enumerated(EnumType.STRING)
+    private RoleName name;
 }
+

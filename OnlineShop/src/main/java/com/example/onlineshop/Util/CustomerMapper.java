@@ -12,7 +12,6 @@ public class CustomerMapper {
         return Customer.builder()
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
-                .email(dto.getEmail())
                 .phoneNumber(dto.getPhoneNumber())
                 .build();
     }
@@ -21,7 +20,6 @@ public class CustomerMapper {
         return CustomerResponseDto.builder()
                 .id(entity.getId())
                 .fullName(entity.getFirstName() + " " + entity.getLastName())
-                .email(entity.getEmail())
                 .phoneNumber(entity.getPhoneNumber())
                 .build();
     }
@@ -29,7 +27,6 @@ public class CustomerMapper {
     public void updateEntity(Customer entity, CustomerRequestDto dto) {
         entity.setFirstName(dto.getFirstName());
         entity.setLastName(dto.getLastName());
-        entity.setEmail(dto.getEmail());
         entity.setPhoneNumber(dto.getPhoneNumber());
     }
 }
