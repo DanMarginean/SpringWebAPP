@@ -1,10 +1,6 @@
 package com.example.onlineshop.Controller;
 
-
-import com.example.onlineshop.Entity.Order;
 import com.example.onlineshop.Entity.OrderStatus;
-import com.example.onlineshop.Repository.OrderRepository;
-import com.example.onlineshop.Util.OrderMapper;
 import com.example.onlineshop.dto.OrderRequestDto;
 import com.example.onlineshop.dto.OrderResponseDto;
 import com.example.onlineshop.Service.OrderService;
@@ -30,6 +26,14 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    @Operation(summary = "List all orders", description = "Returns every order in the system. Admin only.")
+    public ResponseEntity<List<OrderResponseDto>> getAllOrders() {
+        return ResponseEntity.ok(orderService.getAllOrders());
+    }
+
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @Operation(
@@ -96,6 +100,7 @@ public class OrderController {
     ) {
         return ResponseEntity.ok(orderService.getOrdersByCustomer(customerId));
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}/status")
     @Operation(
