@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Circle } from "lucide-react";
-import { cn } from "/frontend/src/lib/utils";
+import { cn } from '../../lib/utils';
 
 type ElegantShapeProps = {
   className?: string;
